@@ -37,52 +37,16 @@ class MainPage(BasePage):
     def drag_ingredient_to_basket(self):
         ingredient = self.wait.until(EC.presence_of_element_located(self.FIRST_INGREDIENT))
         basket = self.wait.until(EC.presence_of_element_located(self.BASKET))
-        
-        browser_name = self.driver.capabilities['browserName'].lower()
-        
-        if browser_name == "firefox":
-            # Эмуляция через JavaScript для Firefox
-            self.driver.execute_script("""
-                var ingredient = arguments[0];
-                var basket = arguments[1];
-                
-                function emitEvent(element, eventType, clientX, clientY) {
-                    var event = new MouseEvent(eventType, {
-                        view: window,
-                        bubbles: true,
-                        cancelable: true,
-                        clientX: clientX,
-                        clientY: clientY
-                    });
-                    element.dispatchEvent(event);
-                }
-                
-                var rectIng = ingredient.getBoundingClientRect();
-                var rectBas = basket.getBoundingClientRect();
-                
-                var startX = rectIng.left + rectIng.width / 2;
-                var startY = rectIng.top + rectIng.height / 2;
-                var endX = rectBas.left + rectBas.width / 2;
-                var endY = rectBas.top + rectBas.height / 2;
-                
-                emitEvent(ingredient, 'mousedown', startX, startY);
-                emitEvent(ingredient, 'dragstart', startX, startY);
-                emitEvent(document.elementFromPoint(endX, endY), 'dragenter', endX, endY);
-                emitEvent(document.elementFromPoint(endX, endY), 'dragover', endX, endY);
-                emitEvent(basket, 'drop', endX, endY);
-                emitEvent(ingredient, 'dragend', endX, endY);
-                emitEvent(basket, 'mouseup', endX, endY);
-            """, ingredient, basket)
-            time.sleep(2)
-        else:
-            actions = ActionChains(self.driver)
-            actions.drag_and_drop(ingredient, basket).perform()
-            time.sleep(1)
+        actions = ActionChains(self.driver)
+        time.sleep(1)
+        actions.drag_and_drop(ingredient, basket).perform()
+        time.sleep(1)
 
     @allure.step("Получить значение счётчика первого ингредиента")
     def get_first_ingredient_counter(self):
-        if self.is_element_visible(self.FIRST_INGREDIENT_COUNTER):
-            text = self.get_text(self.FIRST_INGREDIENT_COUNTER)
+        counters = self.driver.find_elements(By.XPATH, "(//a[contains(@class, 'BurgerIngredient_ingredient')])[1]//div[contains(@class, 'counter_counter')]//p")
+        if counters:
+            text = counters[0].text
             return int(text) if text.isdigit() else 0
         return 0
 
