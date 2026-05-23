@@ -1,0 +1,9 @@
+venv/
+env/
+__pycache__/
+*.pyc
+allure-results/
+allure-report/
+.vscode/
+.idea/
+.DS_Store

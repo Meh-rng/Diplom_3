@@ -1,0 +1,10 @@
+Найдено кнопок в модалке: 1
+  Класс кнопки: Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK
+Ошибка закрытия: Message: Unable to locate element: //button[contains(@class, 'Modal_modal_close_modified')]; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:202:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:555:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+✅ Модальное окно закрыто через оверлей
