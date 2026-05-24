@@ -1,12 +1,12 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 import allure
-import time
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 
 
 class MainPage(BasePage):
+    
     CONSTRUCTOR_BUTTON = (By.XPATH, "//p[text()='Конструктор']")
     ORDER_FEED_BUTTON = (By.XPATH, "//p[text()='Лента Заказов']")
     
@@ -31,22 +31,20 @@ class MainPage(BasePage):
     @allure.step("Кликнуть на первый ингредиент")
     def click_first_ingredient(self):
         self.click_element(self.FIRST_INGREDIENT)
-        time.sleep(1)
 
     @allure.step("Добавить ингредиент перетаскиванием")
     def drag_ingredient_to_basket(self):
         ingredient = self.wait.until(EC.presence_of_element_located(self.FIRST_INGREDIENT))
         basket = self.wait.until(EC.presence_of_element_located(self.BASKET))
+        
         actions = ActionChains(self.driver)
-        time.sleep(1)
         actions.drag_and_drop(ingredient, basket).perform()
-        time.sleep(1)
+        self.wait.until(EC.visibility_of_element_located(self.FIRST_INGREDIENT_COUNTER))
 
     @allure.step("Получить значение счётчика первого ингредиента")
     def get_first_ingredient_counter(self):
-        counters = self.driver.find_elements(By.XPATH, "(//a[contains(@class, 'BurgerIngredient_ingredient')])[1]//div[contains(@class, 'counter_counter')]//p")
-        if counters:
-            text = counters[0].text
+        if self.is_element_visible(self.FIRST_INGREDIENT_COUNTER):
+            text = self.get_text(self.FIRST_INGREDIENT_COUNTER)
             return int(text) if text.isdigit() else 0
         return 0
 

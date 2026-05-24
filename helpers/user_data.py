@@ -1,4 +1,3 @@
-# helpers/user_data.py
 import random
 import string
 

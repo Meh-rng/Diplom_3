@@ -1,5 +1,4 @@
 import allure
-import time
 from pages.main_page import MainPage
 from pages.order_feed_page import OrderFeedPage
 from pages.modal_page import ModalPage
@@ -16,21 +15,15 @@ class TestOrderFeed:
         modal_page = ModalPage(driver)
         
         main_page.click_order_feed()
-        time.sleep(2)
         initial_total = order_feed_page.get_total_order_count()
         
         main_page.click_constructor()
-        time.sleep(1)
         main_page.drag_ingredient_to_basket()
-        time.sleep(1)
         main_page.place_order()
-        time.sleep(3)
         
         modal_page.close_order_modal()
-        time.sleep(2)
         
         main_page.click_order_feed()
-        time.sleep(2)
         new_total = order_feed_page.get_total_order_count()
         
         assert new_total > initial_total, f"Было: {initial_total}, стало: {new_total}"
@@ -43,21 +36,15 @@ class TestOrderFeed:
         modal_page = ModalPage(driver)
         
         main_page.click_order_feed()
-        time.sleep(2)
         initial_today = order_feed_page.get_today_order_count()
         
         main_page.click_constructor()
-        time.sleep(1)
         main_page.drag_ingredient_to_basket()
-        time.sleep(1)
         main_page.place_order()
-        time.sleep(3)
         
         modal_page.close_order_modal()
-        time.sleep(2)
         
         main_page.click_order_feed()
-        time.sleep(2)
         new_today = order_feed_page.get_today_order_count()
         
         assert new_today > initial_today, f"Было: {initial_today}, стало: {new_today}"
@@ -70,21 +57,15 @@ class TestOrderFeed:
         modal_page = ModalPage(driver)
         
         main_page.click_order_feed()
-        time.sleep(2)
         before_orders = order_feed_page.get_orders_in_progress()
         
         main_page.click_constructor()
-        time.sleep(1)
         main_page.drag_ingredient_to_basket()
-        time.sleep(1)
         main_page.place_order()
-        time.sleep(3)
         
         modal_page.close_order_modal()
-        time.sleep(2)
         
         main_page.click_order_feed()
-        time.sleep(3)
         after_orders = order_feed_page.get_orders_in_progress()
         
         assert len(after_orders) > len(before_orders), "Новый заказ не появился в разделе «В работе»"
