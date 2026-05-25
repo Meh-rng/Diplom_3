@@ -1,0 +1,26 @@
+Найдено кнопок в модалке: 1
+  Класс кнопки: Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK
+Ошибка закрытия: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//button[contains(@class, 'Modal_modal_close_modified')]"}
+  (Session info: chrome=148.0.7778.179); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff6202d7de5+14895]
+	chromedriver!GetHandleVerifier [0x7ff6202d7e50+14900]
+	chromedriver!(No symbol) [0x7ff62003d5ad]
+	chromedriver!(No symbol) [0x7ff620097822]
+	chromedriver!(No symbol) [0x7ff620097b2c]
+	chromedriver!(No symbol) [0x7ff6200e7d17]
+	chromedriver!(No symbol) [0x7ff6200e486f]
+	chromedriver!(No symbol) [0x7ff620089df8]
+	chromedriver!(No symbol) [0x7ff62008ace3]
+	chromedriver!GetHandleVerifier [0x7ff6205ecc49+3296f9]
+	chromedriver!GetHandleVerifier [0x7ff6205e7375+323e25]
+	chromedriver!GetHandleVerifier [0x7ff62060bc82+348732]
+	chromedriver!GetHandleVerifier [0x7ff6202f6045+32af5]
+	chromedriver!GetHandleVerifier [0x7ff6202fecec+3b79c]
+	chromedriver!GetHandleVerifier [0x7ff6202e1bc4+1e674]
+	chromedriver!GetHandleVerifier [0x7ff6202e1d54+1e804]
+	chromedriver!GetHandleVerifier [0x7ff6202c60e7+2b97]
+	KERNEL32!BaseThreadInitThunk [0x7ffa9bee7374+14]
+	ntdll!RtlUserThreadStart [0x7ffa9d1bcc91+21]
+
+✅ Модальное окно закрыто через оверлей
