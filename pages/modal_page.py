@@ -10,7 +10,7 @@ class ModalPage(BasePage):
     @allure.step("Закрыть модальное окно с номером заказа")
     def close_order_modal(self):
         try:
-            overlay = self.driver.find_element(*self.MODAL_OVERLAY)
+            overlay = self.find_element(self.MODAL_OVERLAY)
             self.driver.execute_script("arguments[0].click();", overlay)
         except:
             pass
